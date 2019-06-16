@@ -25,11 +25,13 @@ public:
     Initial data for individual cores is set
     System data is set
     */
-        this->getOtherCores(getNumberOfCores());
+        this->getOtherCores(ProcessParser::getNumberOfCores());
         this->setLastCpuMeasures();
         this->setAttributes();
+        
         this-> OSname = ProcessParser::getOSName();
         this-> kernelVer = ProcessParser::getSysKernelVersion();
+        
     }
     void setAttributes();
     void setLastCpuMeasures();

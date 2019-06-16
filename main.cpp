@@ -76,8 +76,10 @@ void printMain(SysInfo sys,ProcessContainer procs){
     while(1){
     box(sys_win,0,0);
     box (proc_win,0,0);
+    
     procs.refreshList();
     std::vector<std::vector<std::string>> processes = procs.getList();
+    
     writeSysInfoToConsole(sys,sys_win);
     getProcessListToConsole(processes[counter],proc_win);
     wrefresh(sys_win);
@@ -95,10 +97,13 @@ void printMain(SysInfo sys,ProcessContainer procs){
 }
 int main( int   argc, char *argv[] )
 {
+    
  //Object which contains list of current processes, Container for Process Class
     ProcessContainer procs;
+
 // Object which containts relevant methods and attributes regarding system details
     SysInfo sys;
+    
     //std::string s = writeToConsole(sys);
     printMain(sys,procs);
     return 0;

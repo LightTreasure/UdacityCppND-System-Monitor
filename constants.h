@@ -38,4 +38,10 @@ public:
     static string versionPath(){
         return "version";
     }
+    static string cpuInfoPath(){
+        return "cpuinfo";
+    }
+    static string etcpasswdPath(){
+        return "/etc/passwd";
+    }
 };
