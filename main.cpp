@@ -47,13 +47,16 @@ void writeSysInfoToConsole(SysInfo sys, WINDOW* sys_win){
 
 void getProcessListToConsole(std::vector<string> processes,WINDOW* win){
 
+    // NOTE: I experimented with prettifying the output and ended up with the following values
+    //       they are not the same as the values recommended in the review, but these look the 
+    //       best for me given that I'm using tabs to separate the columns in Process::getProcess()
     wattron(win,COLOR_PAIR(2));
     mvwprintw(win,1,2,"PID:");
-    mvwprintw(win,1,9,"User:");
-    mvwprintw(win,1,16,"CPU[%%]:");
-    mvwprintw(win,1,26,"RAM[MB]:");
-    mvwprintw(win,1,35,"Uptime:");
-    mvwprintw(win,1,44,"CMD:");
+    mvwprintw(win,1,8,"User:");
+    mvwprintw(win,1,24,"CPU[%%]:");
+    mvwprintw(win,1,40,"RAM[MB]:");
+    mvwprintw(win,1,56,"Uptime:");
+    mvwprintw(win,1,64,"CMD:");
     wattroff(win, COLOR_PAIR(2));
     for(int i=0; i< processes.size();i++){
         mvwprintw(win,2+i,2,getCString(processes[i]));

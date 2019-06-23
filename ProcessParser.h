@@ -196,13 +196,14 @@ std::string ProcessParser::getProcUser(std::string pid)
         }
     }
     
-    std::ifstream estream;
+    stream.close();
+
     // Now that we have the uid, read /etc/passwd to get the username of this uid
-    Util::getStream(Path::etcpasswdPath(), estream);
+    Util::getStream(Path::etcpasswdPath(), stream);
 
     // Each line in thie file describes a user, with fields delimited by ':'
     // the 1st field is username, and the 3rd field is uid
-    while (std::getline(estream, line)) {
+    while (std::getline(stream, line)) {
         std::stringstream ssl(line);
         std::string field;
         std::string uid, username;
@@ -245,6 +246,12 @@ std::vector<std::string> ProcessParser::getPidList()
             }
         }
     }
+
+    if (closedir(proc) != 0)
+    {
+        throw std::runtime_error(std::strerror(errno));
+    }
+
     return pidlist;
 }
 
